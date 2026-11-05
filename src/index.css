@@ -1,0 +1,298 @@
+@import "tailwindcss";
+
+/* AssetFlow Table Base Styles */
+.table-assetflow {
+  table-layout: auto;
+  border-collapse: collapse;
+}
+
+.table-assetflow thead th {
+  white-space: normal;
+  overflow-wrap: break-word;
+  line-height: 1.2;
+}
+
+.table-assetflow tbody td,
+.table-assetflow thead th {
+  vertical-align: middle;
+}
+
+.table-assetflow tbody td {
+  text-overflow: clip;
+}
+
+.table-assetflow.table-padat {
+  font-size: 12px;
+}
+
+.table-assetflow.table-padat tbody td,
+.table-assetflow.table-padat thead th {
+  padding: 4px 6px;
+}
+
+.table-assetflow.table-entri tbody td {
+  padding: 6px 8px;
+  vertical-align: middle;
+}
+
+/* Grid lines active styling toggle */
+.table-gridlines-active td,
+.table-gridlines-active th {
+  border: 1px solid rgba(160, 174, 192, 0.45) !important;
+}
+
+/* Custom Scrollbars */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+
+/* Resizable Table Styles */
+.resizable-table thead th {
+  position: relative;
+}
+
+/* Generic Frozen Column classes (fitur Freeze Kolom) */
+tbody td.frozen-col,
+td.frozen-col {
+  position: sticky !important;
+  z-index: 10 !important;
+  background-color: #ffffff !important;
+  border-right: 1px solid #e5e7eb !important;
+}
+
+thead th.frozen-col,
+th.frozen-col,
+.col-sticky-freeze-th {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 40 !important;
+  background-color: #1e40af !important;
+  color: #ffffff !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.25) !important;
+}
+
+.col-sticky-freeze-th-code,
+th.col-sticky-freeze-th-code {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 40 !important;
+  background-color: #172554 !important;
+  color: #ffffff !important;
+}
+
+/* Header cells MUST NEVER TURN WHITE on hover (whether hovering tr, thead, or th) */
+thead tr:hover th.frozen-col,
+thead tr.group:hover th.frozen-col,
+thead th.frozen-col:hover,
+th.frozen-col:hover,
+thead tr:hover .col-sticky-freeze-th,
+thead .col-sticky-freeze-th:hover,
+.col-sticky-freeze-th:hover {
+  background-color: #1e40af !important;
+  color: #ffffff !important;
+}
+
+thead tr:hover .col-sticky-freeze-th-code,
+thead tr:hover th.col-sticky-freeze-th-code,
+thead .col-sticky-freeze-th-code:hover,
+th.col-sticky-freeze-th-code:hover {
+  background-color: #172554 !important;
+  color: #ffffff !important;
+}
+
+/* Footer Frozen Cells: preserve dark blue footer styling */
+tfoot td.frozen-col,
+tfoot th.frozen-col,
+tfoot tr:hover td.frozen-col,
+tfoot tr:hover th.frozen-col,
+tfoot td.frozen-col:hover,
+tfoot th.frozen-col:hover {
+  position: sticky !important;
+  z-index: 30 !important;
+  background-color: #172554 !important;
+  color: #ffffff !important;
+}
+
+/* Body row hover: ONLY cells in tbody change background */
+tbody tr:hover > td.frozen-col,
+tbody tr.group:hover > td.frozen-col,
+tbody tr:hover .col-sticky-freeze-td,
+tbody tr.group:hover .col-sticky-freeze-td {
+  background-color: #f8fafc !important;
+}
+
+tbody tr:hover > td.col-sticky-freeze-td-code,
+tbody tr.group:hover > td.col-sticky-freeze-td-code {
+  background-color: #eff6ff !important;
+}
+
+tbody tr:hover > td.col-sticky-freeze-td-hidden,
+tbody tr.group:hover > td.col-sticky-freeze-td-hidden {
+  background-color: #e4e4e7 !important;
+}
+
+/* Frozen / Sticky Columns for Menu 1 & Menu 7 */
+.col-sticky-freeze {
+  position: sticky !important;
+}
+
+.col-sticky-freeze-td {
+  position: sticky !important;
+  background-color: #ffffff !important;
+  z-index: 20 !important;
+}
+
+.col-sticky-freeze-td-code {
+  position: sticky !important;
+  background-color: #f8fafc !important;
+  z-index: 20 !important;
+}
+
+.col-sticky-freeze-td-hidden {
+  position: sticky !important;
+  background-color: #f4f4f5 !important;
+  z-index: 20 !important;
+}
+
+.freeze-pane-divider-th {
+  position: sticky !important;
+  top: 0 !important;
+  border-right: 3px solid #818cf8 !important;
+  box-shadow: 4px 0 10px -2px rgba(0, 0, 0, 0.35) !important;
+  z-index: 40 !important;
+}
+
+.freeze-pane-divider-td {
+  position: sticky !important;
+  border-right: 3px solid #6366f1 !important;
+  box-shadow: 4px 0 10px -2px rgba(0, 0, 0, 0.15) !important;
+  z-index: 20 !important;
+}
+
+/* Ensure gridlines do not erase the right border of freeze pane divider */
+.table-gridlines-active th.freeze-pane-divider-th {
+  border-right: 3px solid #818cf8 !important;
+}
+
+.table-gridlines-active td.freeze-pane-divider-td {
+  border-right: 3px solid #6366f1 !important;
+}
+
+.resizable-table tbody tr {
+  position: relative;
+}
+
+.resizable-table tbody tr > td:first-child {
+  position: relative;
+}
+
+/* Column resizer handle */
+.resizer-col {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 7px;
+  height: 100%;
+  cursor: col-resize;
+  user-select: none;
+  z-index: 30;
+  transition: background-color 0.15s ease;
+}
+
+.resizer-col:hover,
+.resizer-col.active {
+  background-color: rgba(99, 102, 241, 0.6);
+  border-right: 2px dashed #4f46e5;
+}
+
+/* Row resizer handle */
+.resizer-row {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  cursor: row-resize;
+  user-select: none;
+  z-index: 25;
+  transition: background-color 0.15s ease;
+}
+
+.resizer-row:hover,
+.resizer-row.active {
+  background-color: rgba(99, 102, 241, 0.5);
+  border-bottom: 2px dashed #4f46e5;
+}
+
+/* Resizing highlights */
+.col-being-resized {
+  background-color: rgba(99, 102, 241, 0.12) !important;
+}
+
+.row-being-resized {
+  background-color: rgba(99, 102, 241, 0.1) !important;
+}
+
+/* Guide Lines */
+.table-resize-guide-v {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  border-left: 2px dashed #4f46e5;
+  z-index: 99999;
+  pointer-events: none;
+}
+
+.table-resize-guide-h {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-top: 2px dashed #4f46e5;
+  z-index: 99999;
+  pointer-events: none;
+}
+
+/* Auto-hide notification banner animation in Menu 1 & Menu 3 */
+.auto-hide-notif-wrapper {
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  max-height: 250px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.auto-hide-notif-wrapper.notif-collapsing,
+.auto-hide-notif-wrapper.slide-up-fade-out,
+.auto-hide-notif-wrapper.collapse-hide {
+  max-height: 0 !important;
+  opacity: 0 !important;
+  transform: translateY(-10px) !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  pointer-events: none;
+}
+
+.auto-hide-notif-wrapper.notif-hidden,
+.auto-hide-notif-wrapper.is-hidden,
+.auto-hide-notif-wrapper.removed {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#tabel-preview-aset,
+.table-preview-container {
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+

@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix AssetFlow GM 825",
+  "description": "Sistem Manajemen Aset, Rotasi, dan Akuntansi Operasional Game Master Pusat",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

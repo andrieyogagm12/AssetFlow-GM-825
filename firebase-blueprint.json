@@ -1,0 +1,176 @@
+{
+  "entities": {
+    "Asset": {
+      "title": "Asset",
+      "description": "Master asset record for game and operational machines",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "name": { "type": "string" },
+        "typeCode": { "type": "string" },
+        "locationCode": { "type": "string" },
+        "brand": { "type": "string" },
+        "serialNumber": { "type": "string" },
+        "buyPrice": { "type": "number" },
+        "buyDate": { "type": "string" },
+        "entryDate": { "type": "string" },
+        "status": { "type": "string", "enum": ["ACTIVE", "IN_TRANSIT", "MAINTENANCE", "DELETED"] },
+        "deleteReason": { "type": "string" },
+        "deleteDate": { "type": "string" },
+        "lastUpdated": { "type": "string" }
+      },
+      "required": ["code", "name", "locationCode", "status"]
+    },
+    "RotationRecord": {
+      "title": "RotationRecord",
+      "description": "Log of asset rotation movement between branches/warehouses",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "assetCode": { "type": "string" },
+        "assetName": { "type": "string" },
+        "fromLocationCode": { "type": "string" },
+        "toLocationCode": { "type": "string" },
+        "exitDate": { "type": "string" },
+        "entryDate": { "type": "string" },
+        "confirmDate": { "type": "string" },
+        "status": { "type": "string", "enum": ["MENUNGGU", "SELESAI", "DITOLAK"] },
+        "suratJalanNumber": { "type": "string" },
+        "notes": { "type": "string" },
+        "type": { "type": "string" }
+      },
+      "required": ["assetCode", "toLocationCode", "status"]
+    },
+    "Location": {
+      "title": "Location",
+      "description": "Store, mall branch, or central warehouse location",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "name": { "type": "string" },
+        "operationalName": { "type": "string" },
+        "tags": { "type": "array" }
+      },
+      "required": ["code", "name"]
+    },
+    "UserAccount": {
+      "title": "UserAccount",
+      "description": "Operational user account with role-based access control",
+      "type": "object",
+      "properties": {
+        "fid": { "type": "string" },
+        "namaUser": { "type": "string" },
+        "akses": { "type": "string" },
+        "isSuperAdmin": { "type": "boolean" },
+        "aksesAllLokasi": { "type": "boolean" },
+        "menuAkses": { "type": "array" },
+        "tombolAkses": { "type": "array" },
+        "kolomAkses": { "type": "array" },
+        "lokasiAkses": { "type": "array" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["fid", "namaUser", "akses"]
+    },
+    "PeriodLock": {
+      "title": "PeriodLock",
+      "description": "Period lock to prevent retroactive editing after closing",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "locationCode": { "type": "string" },
+        "month": { "type": "number" },
+        "year": { "type": "number" },
+        "isLocked": { "type": "boolean" },
+        "lockedAt": { "type": "string" },
+        "lockedBy": { "type": "string" }
+      },
+      "required": ["locationCode", "month", "year", "isLocked"]
+    },
+    "AuditLog": {
+      "title": "AuditLog",
+      "description": "Audit security log for unauthorized attempts or sensitive actions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "username": { "type": "string" },
+        "assetCode": { "type": "string" },
+        "actualLocation": { "type": "string" },
+        "action": { "type": "string" }
+      },
+      "required": ["timestamp", "action"]
+    },
+    "TestConnection": {
+      "title": "TestConnection",
+      "description": "Connection handshake test document",
+      "type": "object",
+      "properties": {
+        "status": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["status"]
+    },
+    "BackupSnapshot": {
+      "title": "BackupSnapshot",
+      "description": "Full cloud database snapshot archive",
+      "type": "object",
+      "properties": {
+        "timestamp": { "type": "string" },
+        "appName": { "type": "string" },
+        "version": { "type": "string" },
+        "data": { "type": "object" }
+      },
+      "required": ["timestamp", "data"]
+    },
+    "SystemMeta": {
+      "title": "SystemMeta",
+      "description": "Global application metadata and sync pointers",
+      "type": "object",
+      "properties": {
+        "backupId": { "type": "string" },
+        "syncedAt": { "type": "string" }
+      },
+      "required": ["syncedAt"]
+    }
+  },
+  "firestore": {
+    "/assets/{assetId}": {
+      "schema": { "$ref": "#/entities/Asset" },
+      "description": "Collection of physical asset machine documents"
+    },
+    "/rotations/{rotationId}": {
+      "schema": { "$ref": "#/entities/RotationRecord" },
+      "description": "Collection of rotation movement records"
+    },
+    "/locations/{locationId}": {
+      "schema": { "$ref": "#/entities/Location" },
+      "description": "Collection of company branches and warehouse locations"
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserAccount" },
+      "description": "Collection of operational users and access control mappings"
+    },
+    "/periodLocks/{lockId}": {
+      "schema": { "$ref": "#/entities/PeriodLock" },
+      "description": "Collection of accounting period lock statuses"
+    },
+    "/auditLogs/{logId}": {
+      "schema": { "$ref": "#/entities/AuditLog" },
+      "description": "Collection of security and unauthorized access logs"
+    },
+    "/backups/{backupId}": {
+      "schema": { "$ref": "#/entities/BackupSnapshot" },
+      "description": "Collection of system snapshots"
+    },
+    "/system/{docId}": {
+      "schema": { "$ref": "#/entities/SystemMeta" },
+      "description": "Collection of system configuration and sync markers"
+    },
+    "/test/{docId}": {
+      "schema": { "$ref": "#/entities/TestConnection" },
+      "description": "Test collection for server connectivity checks"
+    }
+  }
+}
