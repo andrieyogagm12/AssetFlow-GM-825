@@ -247,7 +247,61 @@ export const AssetProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   const [toasts, setToasts] = useState<ToastItem[]>([]);
+  // ===== SUPABASE SYNC - START =====
+  const [supabaseLoaded, setSupabaseLoaded] = useState(false);
 
+  // 1. LOAD dari Supabase saat pertama buka
+  useEffect(() => {
+    const loadFromSupabase = async () => {
+      try {
+        const { data: locs } = await supabase.from('locations').select('*');
+        if (locs && locs.length > 0) {
+          setLocations([...locs].sort((a, b) => String(a.code).localeCompare(String(b.code))));
+        }
+        const { data: types } = await supabase.from('asset_types').select('*');
+        if (types && types.length > 0) {
+          setAssetTypes([...types].sort((a, b) => String(a.name).localeCompare(String(b.name))));
+        }
+        const { data: asts } = await supabase.from('assets').select('*');
+        if (asts && asts.length > 0) {
+          setRawAssets(asts as any);
+        }
+        const { data: rots } = await supabase.from('rotations').select('*');
+        if (rots && rots.length > 0) {
+          setRawRotations(rots as any);
+        }
+      } catch (e) {
+        console.warn('Supabase load gagal, pakai localStorage', e);
+      }
+      setSupabaseLoaded(true);
+    };
+    loadFromSupabase();
+  }, []);
+
+  // 2. SIMPAN ke Supabase setiap ada perubahan aset
+  useEffect(() => {
+    if (!supabaseLoaded) return;
+    if (rawAssets.length === 0) return;
+    const save = async () => {
+      const rows = rawAssets.map((a: any) => ({
+        id: a.id,
+        code: a.code,
+        name: a.name,
+        type_code: a.typeCode || a.type_code,
+        location_code: a.locationCode || a.location_code,
+        category: a.category,
+        entry_date: a.entryDate || a.entry_date,
+        status: a.status,
+        notes: a.notes,
+        reader_tap: a.readerTap ?? a.reader_tap,
+        reader_swipe: a.readerSwipe ?? a.reader_swipe,
+        delete_date: a.deleteDate || a.delete_date,
+      }));
+      await supabase.from('assets').upsert(rows, { onConflict: 'code' });
+    };
+    save();
+  }, [rawAssets, supabaseLoaded]);
+  // ===== SUPABASE SYNC - END =====
   const [accounts, setAccounts] = useState<UserAccount[]>(() => {
     try {
       const saved = localStorage.getItem('gm_users_account');
