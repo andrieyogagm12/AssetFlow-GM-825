@@ -19,6 +19,7 @@
     "exceljs": "^4.4.0",
     "express": "^4.21.2",
     "firebase": "^13.2.0",
+    "@supabase/supabase-js": "^2.45.0",
     "jszip": "^3.10.2",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",
