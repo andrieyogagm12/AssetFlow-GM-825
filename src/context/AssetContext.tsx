@@ -263,9 +263,18 @@ export const AssetProvider: React.FC<{ children: React.ReactNode }> = ({ childre
           setAssetTypes([...types].sort((a, b) => String(a.name).localeCompare(String(b.name))));
         }
         const { data: asts } = await supabase.from('assets').select('*');
-        if (asts && asts.length > 0) {
-          setRawAssets(asts as any);
-        }
+if (asts && asts.length > 0) {
+  const mapped = asts.map((r: any) => ({
+    id: r.id, no: r.no, code: r.code, name: r.name,
+    typeCode: r.type_code, locationCode: r.location_code,
+    category: r.category, entryDate: r.entry_date,
+    status: r.status, notes: r.notes,
+    readerTap: r.reader_tap, readerSwipe: r.reader_swipe,
+    deleteDate: r.delete_date, photoUrl: r.photo_url,
+    price: r.price, supplier: r.supplier,
+  }));
+  setRawAssets(mapped as any);
+}
         const { data: rots } = await supabase.from('rotations').select('*');
         if (rots && rots.length > 0) {
           setRawRotations(rots as any);
