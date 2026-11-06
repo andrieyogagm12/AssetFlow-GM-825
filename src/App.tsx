@@ -150,8 +150,8 @@ function MainApp() {
   }
 
   return (
-    <div className="h-screen max-h-screen overflow-hidden bg-[#f6f7fb] text-zinc-900 font-sans antialiased selection:bg-indigo-500/25 flex flex-col">
-      {/* Top Header (shrink-0 fixed height) */}
+    <div className="min-h-screen bg-[#f6f7fb] text-zinc-900 font-sans antialiased selection:bg-indigo-500/25 flex flex-col">
+      {/* Top Header */}
       <Header
         currentUser={currentUser}
         onLogout={() => setCurrentUser(null)}
@@ -159,7 +159,7 @@ function MainApp() {
 
       {/* Conditional View: Katalog Mesin vs AssetFlow Accounting */}
       {mainView === 'machines' ? (
-        <main className="flex-1 min-h-0 overflow-auto">
+        <main className="flex-1">
           <ViewMesinDirect
             onBackToAccounting={() => {
               setMainView('accounting');
@@ -169,8 +169,8 @@ function MainApp() {
           />
         </main>
       ) : (
-        <main className="flex-1 min-h-0 flex flex-col overflow-hidden">
-          {/* AssetFlow Navigation Tabs Bar (shrink-0) */}
+        <main className="flex-1 flex flex-col">
+          {/* AssetFlow Navigation Tabs Bar */}
           <AssetFlowNav
             currentTab={currentTab}
             currentUser={currentUser}
@@ -183,8 +183,8 @@ function MainApp() {
             }}
           />
 
-          {/* Views Container: flex-1 min-h-0 to let tables expand to fill screen and stay bounded */}
-          <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
+          {/* Views */}
+          <div className="flex-1">
             {currentTab === 'data-rinci' && hasMenuAccess('menu-1') && (
               <ViewDataRinciAset
                 onNavigateToEdit={navigateToEdit}
@@ -207,9 +207,7 @@ function MainApp() {
             {currentTab === 'master' && hasMenuAccess('menu-6') && <ViewMaster />}
             {currentTab === 'pendapatan-mesin' && hasMenuAccess('menu-7') && <ViewPendapatanMesin />}
             {currentTab === 'pengaturan' && canAccessPengaturan && (
-              <div className="flex-1 min-h-0 overflow-y-auto">
-                <ViewPengaturan currentUser={currentUser} />
-              </div>
+              <ViewPengaturan currentUser={currentUser} />
             )}
           </div>
         </main>

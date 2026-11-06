@@ -116,7 +116,7 @@ export const Header: React.FC<HeaderProps> = ({ currentUser, onLogout }) => {
 
   return (
     <>
-      <header className="shrink-0 h-14 sm:h-15 border-b border-zinc-200 bg-white/95 backdrop-blur-md z-30 flex items-center justify-between px-3 md:px-6 gap-3">
+      <header className="h-16 border-b border-zinc-200 bg-white/95 backdrop-blur-md sticky top-0 z-30 flex items-center justify-between px-3 md:px-6 gap-3">
         {/* Brand / Logo */}
         <div className="flex items-center gap-2.5 min-w-0">
           <div className="w-8 h-8 shrink-0 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-xs">

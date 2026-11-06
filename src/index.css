@@ -106,24 +106,7 @@ th.col-sticky-freeze-th-code:hover {
   color: #ffffff !important;
 }
 
-/* Footer Sticky & Frozen Cells: preserve dark blue footer styling and stay pinned to bottom of table */
-tfoot {
-  position: sticky !important;
-  bottom: 0 !important;
-  z-index: 25 !important;
-}
-
-tfoot tr {
-  position: sticky !important;
-  bottom: 0 !important;
-}
-
-tfoot td,
-tfoot th {
-  position: sticky !important;
-  bottom: 0 !important;
-}
-
+/* Footer Frozen Cells: preserve dark blue footer styling */
 tfoot td.frozen-col,
 tfoot th.frozen-col,
 tfoot tr:hover td.frozen-col,
@@ -131,8 +114,7 @@ tfoot tr:hover th.frozen-col,
 tfoot td.frozen-col:hover,
 tfoot th.frozen-col:hover {
   position: sticky !important;
-  bottom: 0 !important;
-  z-index: 35 !important;
+  z-index: 30 !important;
   background-color: #172554 !important;
   color: #ffffff !important;
 }

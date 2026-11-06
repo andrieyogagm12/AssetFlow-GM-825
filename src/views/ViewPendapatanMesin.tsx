@@ -1270,10 +1270,10 @@ export const ViewPendapatanMesin: React.FC = () => {
   };
 
   return (
-    <div className="h-full flex flex-col p-2 sm:p-2.5 min-h-0 overflow-hidden">
+    <div className="p-3 md:p-4 space-y-4">
       {/* Tab Navigation */}
-      <div className="bg-white border border-zinc-200 rounded-xl shadow-xs flex flex-col flex-1 min-h-0 overflow-hidden">
-        <div className="shrink-0 p-2.5 sm:p-3 border-b border-zinc-200 flex flex-wrap items-center justify-between gap-2">
+      <div className="bg-white border border-zinc-200 rounded-xl shadow-xs overflow-hidden">
+        <div className="p-4 border-b border-zinc-200 flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap gap-2" role="tablist">
             {can71 && (
               <button
@@ -1332,9 +1332,9 @@ export const ViewPendapatanMesin: React.FC = () => {
         {/* 7.1 INPUT PENDAPATAN MESIN TAB                       */}
         {/* ==================================================== */}
         {activeSubTab === 'input' && can71 && (
-          <div className="flex flex-col flex-1 min-h-0 overflow-hidden p-2.5 sm:p-3 space-y-2.5">
+          <div className="p-4 space-y-4">
             {/* Filter Bar */}
-            <div className="shrink-0 p-3 bg-zinc-50 border border-zinc-200 rounded-xl flex flex-wrap items-end gap-2.5">
+            <div className="p-4 bg-zinc-50 border border-zinc-200 rounded-xl flex flex-wrap items-end gap-3">
               <div className="min-w-[220px] flex-1 sm:flex-initial">
                 <label className="text-[11px] font-bold text-zinc-700 block uppercase tracking-wider">
                   KODE LOKASI <span className="text-red-500">*</span>
@@ -1399,7 +1399,7 @@ export const ViewPendapatanMesin: React.FC = () => {
                 <p className="text-xs text-blue-600 mt-1">Data mesin dan histori rotasi akan otomatis dimuat sesuai lokasi dan bulan yang dipilih.</p>
               </div>
             ) : (
-              <div className="flex-1 min-h-0 flex flex-col overflow-hidden space-y-2.5">
+              <div className="space-y-3">
                 {/* Auto-hide notification wrapper for both banners */}
                 <div
                   className={`auto-hide-notif-wrapper auto-hide-notif-wrapper-71 ${
@@ -1487,7 +1487,7 @@ export const ViewPendapatanMesin: React.FC = () => {
                 {/* ==================================================== */}
                 {/* 7.1 TABLE CONTAINER (Uniform Blue Header)            */}
                 {/* ==================================================== */}
-                <div id="tabel-preview-aset" className="table-preview-container table-wrapper flex-1 min-h-0 overflow-auto relative border border-zinc-300 rounded-lg">
+                <div id="tabel-preview-aset" className="table-preview-container table-wrapper overflow-x-auto overflow-y-auto max-h-[75vh] border border-zinc-300 rounded-lg">
                   <table
                     ref={tableRef71}
                     className={`w-full text-xs border-collapse resizable-table ${
@@ -1980,26 +1980,6 @@ export const ViewPendapatanMesin: React.FC = () => {
                     )}
                   </table>
                 </div>
-
-                {/* 7.1 Docked Footbar */}
-                <div className="shrink-0 p-2 sm:p-2.5 flex items-center justify-between border border-zinc-200 rounded-lg text-xs bg-zinc-50/95 shadow-xs">
-                  <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                    <span className="font-semibold text-zinc-700">
-                      Total Mesin: <strong>{rows.length}</strong> unit
-                    </span>
-                    <span className="text-zinc-300">|</span>
-                    <span className="text-zinc-600">
-                      Total Koin: <strong className="font-mono text-indigo-700">{grandTotal.totalCoin.toLocaleString('id-ID')}</strong>
-                    </span>
-                    <span className="text-zinc-300">|</span>
-                    <span className="text-zinc-600">
-                      Total Pendapatan: <strong className="font-mono text-emerald-700">Rp {formatCurrencyNumber(grandTotal.totalRevenue)}</strong>
-                    </span>
-                  </div>
-                  <div className="text-[11px] text-zinc-500 font-medium">
-                    Periode: <span className="font-bold text-zinc-700">{MONTH_NAMES[activeMonth - 1]} {activeYear}</span> ({activeLocCode})
-                  </div>
-                </div>
               </div>
             )}
 
@@ -2111,10 +2091,10 @@ export const ViewPendapatanMesin: React.FC = () => {
         {/* 7.2 LAPORAN PENDAPATAN MESIN TAB                     */}
         {/* ==================================================== */}
         {activeSubTab === 'laporan' && can72 && (
-          <div className="flex flex-col flex-1 min-h-0 overflow-hidden p-2.5 sm:p-3 space-y-2.5">
+          <div className="p-4 space-y-4">
             {/* Filter Bar */}
-            <div className="shrink-0 p-3 bg-zinc-50 border border-zinc-200 rounded-xl flex flex-wrap items-end justify-between gap-2.5">
-              <div className="flex flex-wrap items-end gap-2.5">
+            <div className="p-4 bg-zinc-50 border border-zinc-200 rounded-xl flex flex-wrap items-end justify-between gap-3">
+              <div className="flex flex-wrap items-end gap-3">
                 <div className="min-w-[240px]">
                   <MultiLocationFilter
                     locations={displayLocations}
@@ -2204,9 +2184,9 @@ export const ViewPendapatanMesin: React.FC = () => {
                 <p className="text-sm font-semibold">Silakan pilih Kode Lokasi (bisa multi-select) dan Periode terlebih dahulu untuk melihat Laporan Pendapatan.</p>
               </div>
             ) : (
-              <div className="flex-1 min-h-0 flex flex-col overflow-hidden space-y-2.5">
+              <div className="space-y-3">
                 {/* Header text info: KODE LOKASI - NAMA LOKASI (BULAN TAHUN) + Jenis Spesifik Filter at top right */}
-                <div className="shrink-0 flex flex-wrap items-center justify-between gap-3 bg-white p-2.5 border border-zinc-200 rounded-lg">
+                <div className="flex flex-wrap items-center justify-between gap-3 bg-white p-2.5 border border-zinc-200 rounded-lg">
                   {/* Left: Location & Period Text */}
                   <div className="text-xs font-bold text-zinc-900 tracking-wide">
                     Lokasi: <span className="text-indigo-700">{lapActiveLocations.length === locations.length ? 'SEMUA LOKASI' : lapActiveLocations.join(', ')}</span> ({MONTH_NAMES[lapActiveMonth - 1]} {lapActiveYear})
@@ -2229,7 +2209,7 @@ export const ViewPendapatanMesin: React.FC = () => {
                 {/* ==================================================== */}
                 {/* 7.2 REPORT TABLE (Uniform Blue Header, Readonly)     */}
                 {/* ==================================================== */}
-                <div id="tabel-preview-aset" className="table-preview-container table-wrapper flex-1 min-h-0 overflow-auto relative border border-zinc-300 rounded-lg">
+                <div className="table-wrapper overflow-x-auto overflow-y-auto max-h-[75vh] border border-zinc-300 rounded-lg">
                   <table
                     ref={tableRef72}
                     className={`w-full text-xs border-collapse resizable-table ${
@@ -2573,26 +2553,6 @@ export const ViewPendapatanMesin: React.FC = () => {
                       </tfoot>
                     )}
                   </table>
-                </div>
-
-                {/* 7.2 Docked Footbar */}
-                <div className="shrink-0 p-2 sm:p-2.5 flex items-center justify-between border border-zinc-200 rounded-lg text-xs bg-zinc-50/95 shadow-xs">
-                  <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                    <span className="font-semibold text-zinc-700">
-                      Total Mesin: <strong>{lapRows.length}</strong> unit
-                    </span>
-                    <span className="text-zinc-300">|</span>
-                    <span className="text-zinc-600">
-                      Total Koin: <strong className="font-mono text-indigo-700">{lapGrandTotal.totalCoin.toLocaleString('id-ID')}</strong>
-                    </span>
-                    <span className="text-zinc-300">|</span>
-                    <span className="text-zinc-600">
-                      Total Pendapatan: <strong className="font-mono text-emerald-700">Rp {formatCurrencyNumber(lapGrandTotal.totalRevenue)}</strong>
-                    </span>
-                  </div>
-                  <div className="text-[11px] text-zinc-500 font-medium">
-                    Periode: <span className="font-bold text-zinc-700">{MONTH_NAMES[lapActiveMonth - 1]} {lapActiveYear}</span> ({lapActiveLocations.length === locations.length ? 'Semua Lokasi' : lapActiveLocations.join(', ')})
-                  </div>
                 </div>
               </div>
             )}

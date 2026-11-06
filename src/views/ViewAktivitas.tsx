@@ -1448,10 +1448,10 @@ export const ViewAktivitas: React.FC<ViewAktivitasProps> = ({
   }, [rotationOutRows, todayStr, isPeriodLocked]);
 
   return (
-    <div className="h-full flex flex-col p-2 sm:p-2.5 min-h-0 overflow-hidden">
-      <div className="flex flex-col flex-1 min-h-0 overflow-hidden space-y-2">
+    <div className="p-3 md:p-4">
+      <div className="space-y-6">
         {/* Sub-tabs 4.1 to 4.5 */}
-        <div className="shrink-0 flex flex-wrap gap-2" role="tablist">
+        <div className="flex flex-wrap gap-2" role="tablist">
           {can41 && (
             <button
               type="button"
@@ -1539,8 +1539,8 @@ export const ViewAktivitas: React.FC<ViewAktivitasProps> = ({
         {/* 4.1 INPUT TAB                                       */}
         {/* ==================================================== */}
         {activeSubTab === 'input' && can41 && (
-          <div className="bg-white border border-zinc-200 rounded-xl shadow-xs flex flex-col flex-1 min-h-0 overflow-hidden">
-            <div className="shrink-0 p-2.5 sm:p-3 flex flex-wrap items-center justify-between gap-2 border-b border-zinc-200">
+          <div className="bg-white border border-zinc-200 rounded-xl shadow-xs overflow-hidden">
+            <div className="p-4 flex flex-wrap items-center justify-between gap-3 border-b border-zinc-200">
               <div className="font-bold text-sm text-zinc-900">
                 4.1 INPUT :{' '}
                 <span className="font-normal text-zinc-500 text-xs">
@@ -1643,7 +1643,7 @@ export const ViewAktivitas: React.FC<ViewAktivitasProps> = ({
             )}
 
             {/* Input Table */}
-            <div className="table-wrapper flex-1 min-h-0 overflow-auto relative">
+            <div className="table-wrapper overflow-x-auto overflow-y-auto max-h-[70vh]">
               <table
                 ref={tableRefInput}
                 className={`w-full text-xs table-assetflow table-padat table-entri resizable-table ${
@@ -1867,7 +1867,7 @@ export const ViewAktivitas: React.FC<ViewAktivitasProps> = ({
               </table>
             </div>
 
-            <div className="shrink-0 p-2 sm:p-2.5 text-[11px] bg-blue-50/95 text-blue-700 border-t border-blue-100 shadow-xs flex items-center justify-between">
+            <div className="sticky bottom-0 z-20 p-3 text-[11px] bg-blue-50/95 backdrop-blur-xs text-blue-700 border-t border-blue-100 shadow-md flex items-center justify-between">
               <span>
                 💡 <strong>Catatan:</strong> Aktivitas INPUT otomatis akan terkoneksi di{' '}
                 <strong>2. LAPORAN ROTASI ASET</strong> sesuai periode bulan yang di input dengan keterangan DARI LOKASI
@@ -1882,8 +1882,8 @@ export const ViewAktivitas: React.FC<ViewAktivitasProps> = ({
         {/* 4.2 EDIT TAB                                         */}
         {/* ==================================================== */}
         {activeSubTab === 'edit' && can42 && (
-          <div className="bg-white border border-zinc-200 rounded-xl shadow-xs flex flex-col flex-1 min-h-0 overflow-hidden">
-            <div className="shrink-0 p-2.5 sm:p-3 flex flex-wrap items-center justify-between gap-2 border-b border-zinc-200">
+          <div className="bg-white border border-zinc-200 rounded-xl shadow-xs overflow-hidden">
+            <div className="p-4 flex flex-wrap items-center justify-between gap-3 border-b border-zinc-200">
               <div className="font-bold text-sm text-zinc-900">
                 4.2 EDIT : <span className="font-normal text-zinc-500 text-xs">*data aset yang akan dirubah</span>
               </div>
@@ -1975,7 +1975,7 @@ export const ViewAktivitas: React.FC<ViewAktivitasProps> = ({
               </div>
             )}
 
-            <div className="table-wrapper flex-1 min-h-0 overflow-auto relative">
+            <div className="table-wrapper overflow-x-auto overflow-y-auto max-h-[70vh]">
               <table
                 ref={tableRefEdit}
                 className={`w-full text-xs table-assetflow table-padat table-entri resizable-table ${
@@ -2255,7 +2255,7 @@ export const ViewAktivitas: React.FC<ViewAktivitasProps> = ({
               </table>
             </div>
 
-            <div className="shrink-0 p-2 sm:p-2.5 text-[11px] bg-blue-50/95 text-blue-700 border-t border-blue-100 shadow-xs">
+            <div className="sticky bottom-0 z-20 p-3 text-[11px] bg-blue-50/95 backdrop-blur-xs text-blue-700 border-t border-blue-100 shadow-md">
               💡 <strong>Catatan:</strong> Aktivitas EDIT hanya merubah data aset. Untuk memindahkan aset ke lokasi lain,
               gunakan <strong>4.4 ROTASI</strong>.
             </div>
@@ -2266,8 +2266,8 @@ export const ViewAktivitas: React.FC<ViewAktivitasProps> = ({
         {/* 4.3 HAPUS TAB                                        */}
         {/* ==================================================== */}
         {activeSubTab === 'hapus' && can43 && (
-          <div className="bg-white border border-zinc-200 rounded-xl shadow-xs flex flex-col flex-1 min-h-0 overflow-hidden">
-            <div className="shrink-0 p-2.5 sm:p-3 flex flex-wrap items-center justify-between gap-2 border-b border-zinc-200">
+          <div className="bg-white border border-zinc-200 rounded-xl shadow-xs overflow-hidden">
+            <div className="p-4 flex flex-wrap items-center justify-between gap-3 border-b border-zinc-200">
               <div className="font-bold text-sm text-zinc-900">
                 4.3 HAPUS :{' '}
                 <span className="font-normal text-zinc-500 text-xs">
@@ -2434,7 +2434,7 @@ export const ViewAktivitas: React.FC<ViewAktivitasProps> = ({
               </div>
             )}
 
-            <div className="table-wrapper flex-1 min-h-0 overflow-auto relative">
+            <div className="table-wrapper overflow-x-auto overflow-y-auto max-h-[70vh]">
               <table
                 ref={tableRefHapus}
                 className={`w-full text-xs table-assetflow table-padat table-entri resizable-table ${
@@ -2519,7 +2519,7 @@ export const ViewAktivitas: React.FC<ViewAktivitasProps> = ({
               </table>
             </div>
 
-            <div className="shrink-0 p-2 sm:p-2.5 text-[11px] bg-red-50/95 text-red-700 border-t border-red-100 shadow-xs">
+            <div className="sticky bottom-0 z-20 p-3 text-[11px] bg-red-50/95 backdrop-blur-xs text-red-700 border-t border-red-100 shadow-md">
               ⚠️ <strong>Peringatan:</strong> Aktivitas HAPUS otomatis akan tercatat di riwayat mutasi dan menghilangkan
               data dari <strong>1. DATA RINCI ASET</strong>.
             </div>
@@ -2530,7 +2530,7 @@ export const ViewAktivitas: React.FC<ViewAktivitasProps> = ({
         {/* 4.4 ROTASI TAB (KELUAR & MASUK)                      */}
         {/* ==================================================== */}
         {activeSubTab === 'rotasi' && can44 && (
-          <div className="flex-1 min-h-0 overflow-y-auto space-y-4 pr-1">
+          <div className="space-y-6">
             <div className="flex flex-wrap gap-2" role="tablist">
               <button
                 type="button"
@@ -3221,8 +3221,8 @@ export const ViewAktivitas: React.FC<ViewAktivitasProps> = ({
         {/* 4.5 TUTUP PERIODE TAB                                */}
         {/* ==================================================== */}
         {activeSubTab === 'tutup' && can45 && (
-          <div className="bg-white border border-zinc-200 rounded-xl shadow-xs flex flex-col flex-1 min-h-0 overflow-hidden">
-            <div className="shrink-0 p-2.5 sm:p-3 border-b border-zinc-200">
+          <div className="bg-white border border-zinc-200 rounded-xl shadow-xs overflow-hidden">
+            <div className="p-4 border-b border-zinc-200">
               <div className="font-bold text-sm text-zinc-900">4.5 TUTUP PERIODE AKUNTANSI</div>
               <div className="mt-4 space-y-3 max-w-[760px]">
                 {/* Pilih Lokasi */}
@@ -3297,7 +3297,7 @@ export const ViewAktivitas: React.FC<ViewAktivitasProps> = ({
             </div>
 
             {/* Locked Periods Table */}
-            <div className="table-wrapper flex-1 min-h-0 overflow-auto relative">
+            <div className="overflow-auto max-h-[500px]">
               <table
                 ref={tableRefTutup}
                 className={`w-full text-xs table-assetflow table-padat resizable-table ${
@@ -3369,7 +3369,7 @@ export const ViewAktivitas: React.FC<ViewAktivitasProps> = ({
               </table>
             </div>
 
-            <div className="shrink-0 p-2 sm:p-2.5 text-[11px] bg-amber-50/95 text-amber-800 italic border-t border-amber-200 shadow-xs">
+            <div className="sticky bottom-0 z-20 p-3 text-[11px] bg-amber-50/95 backdrop-blur-xs text-amber-800 italic border-t border-amber-200 shadow-md">
               *Lokasi yang sudah melakukan 'TUTUP' periode tidak bisa lagi melakukan INPUT, EDIT, dan HAPUS. Kecuali
               melakukan 'BUKA' terlebih dahulu.
             </div>

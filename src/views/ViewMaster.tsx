@@ -182,11 +182,11 @@ export const ViewMaster: React.FC = () => {
   }, [assetTypes, typeSearch]);
 
   return (
-    <div className="h-full flex flex-col p-2 sm:p-2.5 min-h-0 overflow-hidden">
-      <div className="bg-white border border-zinc-200 rounded-xl shadow-xs flex flex-col flex-1 min-h-0 overflow-hidden">
-        <div className="flex flex-col flex-1 min-h-0 overflow-hidden p-2.5 sm:p-3">
+    <div className="p-3 md:p-4">
+      <div className="bg-white border border-zinc-200 rounded-xl shadow-xs overflow-hidden">
+        <div className="p-4">
           {/* Sub-tabs 6.1 and 6.2 */}
-          <div className="shrink-0 flex flex-wrap gap-2 mb-3" role="tablist">
+          <div className="flex flex-wrap gap-2 mb-4" role="tablist">
             {can61 && (
               <button
                 type="button"
@@ -229,8 +229,8 @@ export const ViewMaster: React.FC = () => {
           {/* 6.1 MASTER LOKASI                                   */}
           {/* =================================================== */}
           {activeSubTab === 'lokasi' && can61 && (
-            <div className="flex flex-col flex-1 min-h-0 overflow-hidden">
-              <div className="shrink-0 flex items-center justify-between gap-3 mb-2">
+            <div>
+              <div className="flex items-center justify-between gap-3 mb-3">
                 <div className="font-bold text-sm text-zinc-900">
                   6.1 MASTER LOKASI - Tambah, Edit, Hapus Lokasi
                 </div>
@@ -358,7 +358,7 @@ export const ViewMaster: React.FC = () => {
               </div>
 
               {/* Table */}
-              <div className="flex-1 min-h-0 overflow-auto relative border border-zinc-200 rounded-lg">
+              <div className="overflow-auto max-h-[500px] border border-zinc-200 rounded-lg">
                 <table
                   ref={tableRefLokasi}
                   className={`w-full text-xs table-assetflow resizable-table ${
@@ -550,7 +550,7 @@ export const ViewMaster: React.FC = () => {
                 </table>
               </div>
 
-              <div className="shrink-0 mt-2 p-2 sm:p-2.5 rounded-lg border border-zinc-200 text-[11px] bg-zinc-50/95 text-zinc-600 shadow-xs flex items-center justify-between">
+              <div className="sticky bottom-0 z-20 mt-2 p-2.5 rounded-lg border border-zinc-200 text-[11px] bg-zinc-50/95 backdrop-blur-xs text-zinc-600 shadow-sm flex items-center justify-between">
                 <span>
                   <strong>{locations.length} lokasi terdaftar.</strong> Data otomatis terurut berdasarkan KODE (A-Z). KODE dipakai sebagai awalan KODE aset di semua laporan.
                 </span>
@@ -563,8 +563,8 @@ export const ViewMaster: React.FC = () => {
           {/* 6.2 MASTER KATEGORI ASET                            */}
           {/* =================================================== */}
           {activeSubTab === 'kategori' && can62 && (
-            <div className="flex flex-col flex-1 min-h-0 overflow-hidden">
-              <div className="shrink-0 flex items-center justify-between gap-3 mb-2">
+            <div>
+              <div className="flex items-center justify-between gap-3 mb-3">
                 <div className="font-bold text-sm text-zinc-900">
                   6.2 MASTER KATEGORI ASET - Kategori, Jenis, Singkatan 2 Huruf
                 </div>
@@ -636,7 +636,7 @@ export const ViewMaster: React.FC = () => {
               </div>
 
               {/* Table */}
-              <div className="flex-1 min-h-0 overflow-auto relative border border-zinc-200 rounded-lg">
+              <div className="overflow-auto max-h-[500px] border border-zinc-200 rounded-lg">
                 <table
                   ref={tableRefKategori}
                   className={`w-full text-xs table-assetflow resizable-table ${
@@ -776,7 +776,7 @@ export const ViewMaster: React.FC = () => {
                 </table>
               </div>
 
-              <div className="shrink-0 mt-2 p-2 sm:p-2.5 rounded-lg border border-zinc-200 text-[11px] bg-zinc-50/95 text-zinc-600 shadow-xs flex items-center justify-between">
+              <div className="sticky bottom-0 z-20 mt-2 p-2.5 rounded-lg border border-zinc-200 text-[11px] bg-zinc-50/95 backdrop-blur-xs text-zinc-600 shadow-sm flex items-center justify-between">
                 <span>
                   <strong>{assetTypes.length} kategori & jenis spesifik terdaftar.</strong> Data otomatis terurut berdasarkan JENIS SPESIFIK (A-Z). SINGKATAN dipakai sebagai JENIS di setiap KODE aset.
                 </span>

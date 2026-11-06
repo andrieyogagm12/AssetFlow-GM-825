@@ -142,10 +142,10 @@ export const ViewLaporanRotasi: React.FC<ViewLaporanRotasiProps> = ({ onInspectA
   const canAction = canColumnAksi && (canRiwayat || canBatal);
 
   return (
-    <div className="h-full flex flex-col p-2 sm:p-2.5 min-h-0 overflow-hidden">
-      <div className="bg-white border border-zinc-200 rounded-xl shadow-xs flex flex-col flex-1 min-h-0 overflow-hidden">
+    <div className="p-3 md:p-4">
+      <div className="bg-white border border-zinc-200 rounded-xl shadow-xs overflow-hidden">
         {/* Filters Header */}
-        <div className="shrink-0 p-2.5 border-b border-zinc-200 space-y-2">
+        <div className="p-4 border-b border-zinc-200 space-y-3">
           <div className="flex flex-wrap gap-3 items-end">
             <div className="min-w-[220px] flex-1 sm:flex-initial">
               <MultiLocationFilter
@@ -233,7 +233,7 @@ export const ViewLaporanRotasi: React.FC<ViewLaporanRotasiProps> = ({ onInspectA
         </div>
 
         {/* Table Content */}
-        <div className="flex-1 min-h-0 overflow-auto relative">
+        <div className="overflow-auto max-h-[70vh]">
           <table
             ref={tableRef}
             className={`w-full text-xs table-assetflow table-padat resizable-table ${
@@ -335,10 +335,13 @@ export const ViewLaporanRotasi: React.FC<ViewLaporanRotasiProps> = ({ onInspectA
           </table>
         </div>
 
-        {/* Bottom Footer Bar */}
-        <div className="shrink-0 p-2 sm:p-2.5 flex items-center justify-between border-t border-zinc-200 text-xs bg-zinc-50/95 shadow-xs">
+        {/* Sticky Freeze Bottom Footer */}
+        <div className="sticky bottom-0 z-20 p-3 flex items-center justify-between border-t border-zinc-200 text-xs bg-zinc-50/95 backdrop-blur-xs shadow-md">
           <span className="font-semibold text-zinc-700">
             Total {filteredRotations.length} aktivitas rotasi terdaftar
+          </span>
+          <span className="text-[11px] text-zinc-500 font-medium">
+            PT Budi Rahardja Cahaya • AssetFlow
           </span>
         </div>
       </div>

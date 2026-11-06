@@ -39,15 +39,9 @@ export const ViewInfoPerpindahan: React.FC<ViewInfoPerpindahanProps> = ({ initia
     return sourceAssets.find((a) => a.code.toUpperCase() === clean);
   }, [sourceAssets, activeCode]);
 
-  // Find all rotations for this asset sorted chronologically, including initial entry, or show all rotations if no code is entered
+  // Find all rotations for this asset sorted chronologically, including initial entry
   const assetRotations = useMemo(() => {
-    if (!activeCode.trim()) {
-      return sourceRotations.slice().sort((a, b) => {
-        const dateA = a.entryDate || a.exitDate || a.confirmDate || '';
-        const dateB = b.entryDate || b.exitDate || b.confirmDate || '';
-        return dateB.localeCompare(dateA);
-      });
-    }
+    if (!activeCode.trim()) return [];
     const clean = activeCode.trim().toUpperCase();
     const rots = sourceRotations
       .filter((r) => r.assetCode.toUpperCase() === clean)
@@ -112,7 +106,7 @@ export const ViewInfoPerpindahan: React.FC<ViewInfoPerpindahanProps> = ({ initia
   };
 
   const handleExport = async () => {
-    if (assetRotations.length === 0) {
+    if (!matchedAsset && assetRotations.length === 0) {
       addToast('Tidak ada data perpindahan aset untuk diekspor', 'warning');
       return;
     }
@@ -146,10 +140,10 @@ export const ViewInfoPerpindahan: React.FC<ViewInfoPerpindahanProps> = ({ initia
   };
 
   return (
-    <div className="h-full flex flex-col p-2 sm:p-2.5 min-h-0 overflow-hidden">
-      <div className="bg-white border border-zinc-200 rounded-xl shadow-xs flex flex-col flex-1 min-h-0 overflow-hidden">
+    <div className="p-3 md:p-4">
+      <div className="bg-white border border-zinc-200 rounded-xl shadow-xs overflow-hidden">
         {/* Search & Actions Header */}
-        <div className="shrink-0 p-2.5 sm:p-3 border-b border-zinc-200">
+        <div className="p-4 border-b border-zinc-200">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div className="max-w-[460px] flex-1">
               <div className="flex items-center justify-between mb-1">
@@ -216,7 +210,7 @@ export const ViewInfoPerpindahan: React.FC<ViewInfoPerpindahanProps> = ({ initia
         </div>
 
         {/* Table Content */}
-        <div id="tabel-preview-aset" className="table-preview-container flex-1 min-h-0 overflow-auto relative border-t border-zinc-200">
+        <div className="overflow-auto max-h-[70vh]">
           <table
             ref={tableRef}
             className={`w-full text-xs table-assetflow resizable-table ${
@@ -264,7 +258,7 @@ export const ViewInfoPerpindahan: React.FC<ViewInfoPerpindahanProps> = ({ initia
                   <td colSpan={9} className="px-3 py-14 text-center text-xs text-zinc-500">
                     {activeCode
                       ? `Tidak ditemukan riwayat perpindahan untuk kode aset "${activeCode}".`
-                      : 'Belum ada data riwayat perpindahan aset.'}
+                      : 'Belum ada data — Masukkan kode untuk melihat history perpindahan aset'}
                   </td>
                 </tr>
               ) : (
@@ -300,13 +294,13 @@ export const ViewInfoPerpindahan: React.FC<ViewInfoPerpindahanProps> = ({ initia
           </table>
         </div>
 
-        {/* Bottom Footer */}
-        <div className="shrink-0 p-2 sm:p-2.5 flex items-center justify-between border-t border-zinc-200 text-xs bg-zinc-50/95 shadow-xs">
+        {/* Sticky Freeze Bottom Footer */}
+        <div className="sticky bottom-0 z-20 p-3 flex items-center justify-between border-t border-zinc-200 text-xs bg-zinc-50/95 backdrop-blur-xs shadow-md">
           <span className="font-semibold text-zinc-700">
             Total {assetRotations.length} riwayat mutasi/perpindahan aset
           </span>
           <span className="text-[11px] text-zinc-500 font-medium font-mono">
-            {activeCode ? `Kode Aset: ${activeCode}` : 'Semua Riwayat Perpindahan'}
+            {activeCode ? `Kode Aset: ${activeCode}` : 'AssetFlow Mutasi'}
           </span>
         </div>
       </div>
