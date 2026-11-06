@@ -20,7 +20,7 @@ import {
   INITIAL_REVENUES
 } from '../data/initialData';
 import { AccessDeniedInfo } from '../components/AccessDeniedModal';
-
+import { supabase } from '../lib/supabase';
 export interface ToastItem {
   id: string;
   message: string;
