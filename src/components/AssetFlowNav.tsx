@@ -74,7 +74,7 @@ export const AssetFlowNav: React.FC<AssetFlowNavProps> = ({ currentTab, onChange
   }, [currentUser, canAccessPengaturan, hasMenuAccess]);
 
   return (
-    <div className="sticky top-16 z-20 bg-white border-b border-zinc-200 transition-shadow shadow-xs">
+    <div className="shrink-0 z-20 bg-white border-b border-zinc-200 transition-shadow shadow-xs">
       <div className="px-4 md:px-6 py-2 flex items-center justify-start">
         {/* 8 Horizontal Nav Buttons */}
         <div className="min-w-0 w-full overflow-x-auto scrollbar-thin">

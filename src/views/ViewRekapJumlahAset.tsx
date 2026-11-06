@@ -571,10 +571,10 @@ export const ViewRekapJumlahAset: React.FC = () => {
   };
 
   return (
-    <div className="p-3 md:p-4">
-      <div className="bg-white border border-zinc-200 rounded-xl shadow-xs overflow-hidden">
+    <div className="h-full flex flex-col p-2 sm:p-2.5 min-h-0 overflow-hidden">
+      <div className="bg-white border border-zinc-200 rounded-xl shadow-xs flex flex-col flex-1 min-h-0 overflow-hidden">
         {/* Filters Header */}
-        <div className="p-4 border-b border-zinc-200 flex flex-wrap gap-3 items-end">
+        <div className="shrink-0 p-2.5 border-b border-zinc-200 flex flex-wrap gap-2.5 items-end">
           <div className="min-w-[240px] flex-1 sm:flex-initial">
             <MultiLocationFilter
               locations={operationalLocations}
@@ -679,7 +679,7 @@ export const ViewRekapJumlahAset: React.FC = () => {
         </div>
 
         {/* Table Content */}
-        <div id="tabel-preview-aset" className="overflow-auto max-h-[620px]">
+        <div id="tabel-preview-aset" className="table-preview-container flex-1 min-h-0 overflow-auto relative">
           <table
             ref={tableRef}
             className={`w-full text-xs table-assetflow table-padat resizable-table ${
@@ -1150,6 +1150,16 @@ export const ViewRekapJumlahAset: React.FC = () => {
               </tr>
             </tfoot>
           </table>
+        </div>
+
+        {/* Bottom Footer Bar */}
+        <div className="shrink-0 p-2 sm:p-2.5 flex items-center justify-between border-t border-zinc-200 text-xs bg-zinc-50/95 shadow-xs">
+          <span className="font-semibold text-zinc-700">
+            Total {summaryRows.length} Lokasi Terdata • Grand Total: {grandTotals.total} Unit Aset
+          </span>
+          <span className="text-[11px] text-zinc-500 font-mono">
+            Periode: {selectedMonth === 'ALL' ? 'Semua Bulan' : MONTH_NAMES[parseInt(selectedMonth, 10) - 1]} {selectedYear}
+          </span>
         </div>
       </div>
     </div>

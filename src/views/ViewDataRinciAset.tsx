@@ -621,10 +621,10 @@ export const ViewDataRinciAset: React.FC<ViewDataRinciAsetProps> = ({
   };
 
   return (
-    <div className="p-3 md:p-4">
-      <div className="bg-white border border-zinc-200 rounded-xl shadow-xs overflow-hidden">
+    <div className="h-full flex flex-col p-2 sm:p-2.5 min-h-0 overflow-hidden">
+      <div className="bg-white border border-zinc-200 rounded-xl shadow-xs flex flex-col flex-1 min-h-0 overflow-hidden">
         {/* Top Filters */}
-        <div className="p-3 border-b border-zinc-200 space-y-2.5">
+        <div className="shrink-0 p-2.5 border-b border-zinc-200 space-y-2">
           <div className="flex flex-wrap gap-3 items-end">
             {/* Lokasi (Multi-Select Checkboxes) */}
             <MultiLocationFilter
@@ -925,7 +925,7 @@ export const ViewDataRinciAset: React.FC<ViewDataRinciAsetProps> = ({
         )}
 
         {/* Table Content */}
-        <div id="tabel-preview-aset" className="overflow-x-auto overflow-y-auto max-h-[540px]">
+        <div id="tabel-preview-aset" className="table-preview-container flex-1 min-h-0 overflow-auto relative">
           <table
             ref={tableRef}
             className={`w-full text-xs table-assetflow table-padat resizable-table ${
@@ -1354,8 +1354,8 @@ export const ViewDataRinciAset: React.FC<ViewDataRinciAsetProps> = ({
           </table>
         </div>
 
-        {/* Bottom Pagination & Summary Bar (Sticky Freeze at Bottom) */}
-        <div className="sticky bottom-0 z-20 p-3 flex flex-wrap items-center justify-between gap-3 border-t border-zinc-200 text-xs bg-zinc-50/95 backdrop-blur-xs shadow-md">
+        {/* Bottom Pagination & Summary Bar (shrink-0 docked at bottom) */}
+        <div className="shrink-0 p-2 sm:p-2.5 flex flex-wrap items-center justify-between gap-2 border-t border-zinc-200 text-xs bg-zinc-50/95 shadow-xs">
           {/* Left: Info Baris & Halaman + Tampilkan Select + Prev/Next */}
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-zinc-600 font-medium">
